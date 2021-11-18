@@ -63,6 +63,8 @@ export default {
     font-size: 20px;
 }
 .post {
+    color: #734444;
+    background-color: #eeedbe;
     border-width: 1px;
     border-style: solid;
     border-radius: 8px;

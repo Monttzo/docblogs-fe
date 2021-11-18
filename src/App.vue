@@ -3,26 +3,31 @@
     <nav class="nav">
 
       <section class="LogoBox" v-on:click="buttonHome" >
-        <img src="../public/aid-kit1.png" class="logo">
+        <img src="../public/aid-kit2.png" class="logo">
         <h1>DocBlogs</h1>
       </section>
 
-      <section class="ButtonLogInBox">
+      <section class="ButtonLogInBox" v-if="!isauth">
         <button v-on:click="buttonLogIn"><h4>Login</h4></button>
+      </section>
+
+      <section class="ButtonLogOutBox" v-if="isauth">
+        <button v-on:click="buttonLogOut"><h4>Logout</h4></button>
       </section>
 
       <section class="NewPostBox" v-if="isauth">
         <button v-on:click="buttonNewPost"><img src="../public/plus1.png" class="icoButton"><h4>New Post</h4></button>
       </section>
 
-      <section class="MyPostBox" v-if="isauth">>
+      <section class="MyPostBox" v-if="isauth">
         <button v-on:click="buttonMyPost"><img src="../public/quotes-right1.png" class="icoButtonQuotes"><h4>My Posts</h4></button>
       </section>
 
     </nav>
 
     <section class="main-component">
-      <router-view>
+      <router-view
+      v-on:completedLogIn="completedLogIn">
       </router-view>
     </section>
 
@@ -33,7 +38,7 @@ export default {
   name: 'App',
   data: function(){
     return {
-      isauth : false,
+      isauth : localStorage.getItem("isAuth") || false,
     }
   },
   methods:{
@@ -42,7 +47,20 @@ export default {
     },
     buttonLogIn: function(){
       this.$router.push({name: "LogIn"});
-    }
+    },
+    completedLogIn: function(data){
+      localStorage.setItem("isAuth", true);
+      localStorage.setItem("token_access", data.token_access);
+      alert("Succesfuly Autentication");
+      this.buttonHome();
+      window.location.reload()
+    },
+    buttonLogOut: function(){
+      localStorage.clear();
+      alert("Sesion closed");
+      this.buttonHome();
+      window.location.reload()
+    },
   },
   created: function(){
     this.buttonHome();
@@ -61,10 +79,33 @@ button {
   height: 50px;
   font-weight: bold;
   font-size: 16px;
-  color:#8bd5cb;
-  background-color: #516091;
+  color:#eeedbe;
+  background-color: #734444;
   border-radius: 5px;
   border-width: 0px;
+}
+button:hover{
+  background-color: #eeedbe;
+  color: #734444;
+  transition:ease all 0.6s;
+}
+input {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+  height: 50px;
+  font-weight: bold;
+  font-size: 16px;
+  color:#eeedbe;
+  background-color: #734444;
+  border-radius: 5px;
+  border-width: 0px;
+}
+input:hover{
+  background-color: #eeedbe;
+  color: #734444;
+  transition:ease all 0.6s;
 }
 .NewPostBox {
   display: flex;
@@ -79,6 +120,12 @@ button {
   width: fit-content;
 }
 .ButtonLogInBox {
+  display: flex;
+  position: absolute;
+  right: 20px;
+  width: fit-content;
+}
+.ButtonLogOutBox {
   display: flex;
   position: absolute;
   right: 20px;
@@ -109,12 +156,12 @@ button {
   width: 50px;
 }
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Shippori Antique', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #516091;
-  background-color: #edfffa;
+  color: #eeedbe;
+  background-color: #734444;
   margin: 0px;
   width: 100%;
   height: 100%;
@@ -127,9 +174,9 @@ body {
   display: flex;
   align-items: center;
   padding: 10px;
-  background-color: #8bd5cb;
+  background-color: #c37857;
   font-weight: bold;
-  color: #516091;
+  color: #eeedbe;
 }
 .nav h1 {
   display: inline-block;
