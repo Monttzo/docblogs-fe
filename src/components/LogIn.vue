@@ -40,8 +40,6 @@ export default {
                 )
                 .then((result) => {
                     let dataLogIn = {
-                        password: this.user.password,
-                        username: this.user.email,
                         token_access: result.data.access_token,
                     }
                     this.$emit('completedLogIn', dataLogIn)

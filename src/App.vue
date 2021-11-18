@@ -7,6 +7,10 @@
         <h1>DocBlogs</h1>
       </section>
 
+      <section class="ButtonSignInBox" v-if="!isauth">
+        <button v-on:click="buttonSignIn"><h4>Sign in</h4></button>
+      </section>
+
       <section class="ButtonLogInBox" v-if="!isauth">
         <button v-on:click="buttonLogIn"><h4>Login</h4></button>
       </section>
@@ -27,7 +31,8 @@
 
     <section class="main-component">
       <router-view
-      v-on:completedLogIn="completedLogIn">
+      v-on:completedLogIn="completedLogIn"
+      v-on:completedSignIn="completedSignIn">
       </router-view>
     </section>
 
@@ -55,12 +60,22 @@ export default {
       this.buttonHome();
       window.location.reload()
     },
+    completedSignIn: function(data){
+      alert("Registration successful");
+      this.completedLogIn(data);
+    },
     buttonLogOut: function(){
       localStorage.clear();
       alert("Sesion closed");
       this.buttonHome();
       window.location.reload()
     },
+    buttonMyPost: function(){
+      this.$router.push({name: "MyPosts"});
+    },
+    buttonSignIn: function(){
+      this.$router.push({name: "SignIn"});
+    }
   },
   created: function(){
     this.buttonHome();
@@ -117,6 +132,12 @@ input:hover{
   display: flex;
   position: absolute;
   right: 250px;
+  width: fit-content;
+}
+.ButtonSignInBox {
+  display: flex;
+  position: absolute;
+  right: 100px;
   width: fit-content;
 }
 .ButtonLogInBox {
