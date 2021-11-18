@@ -11,18 +11,19 @@
         <button v-on:click="buttonLogIn"><h4>Login</h4></button>
       </section>
 
-      <section class="NewPostBox">
+      <section class="NewPostBox" v-if="isauth">
         <button v-on:click="buttonNewPost"><img src="../public/plus1.png" class="icoButton"><h4>New Post</h4></button>
       </section>
 
-      <section class="MyPostBox">
+      <section class="MyPostBox" v-if="isauth">>
         <button v-on:click="buttonMyPost"><img src="../public/quotes-right1.png" class="icoButtonQuotes"><h4>My Posts</h4></button>
       </section>
 
     </nav>
 
     <section class="main-component">
-      
+      <router-view>
+      </router-view>
     </section>
 
   </div>
@@ -32,14 +33,19 @@ export default {
   name: 'App',
   data: function(){
     return {
-
+      isauth : false,
     }
   },
   methods:{
-
+    buttonHome: function(){
+      this.$router.push({name: "LoadPosts"});
+    },
+    buttonLogIn: function(){
+      this.$router.push({name: "LogIn"});
+    }
   },
   created: function(){
-
+    this.buttonHome();
   }
 }
 </script>
