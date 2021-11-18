@@ -1,20 +1,30 @@
 <template>
   <div id="app" class="app">
     <nav class="nav">
-      <div class="LogoBox" v-on:click="buttonHome" >
+
+      <section class="LogoBox" v-on:click="buttonHome" >
         <img src="../public/aid-kit1.png" class="logo">
         <h1>DocBlogs</h1>
-      </div>
-      <div class="ButtonLogInBox">
-        <button v-on:click="buttonLogIn">Login</button>
-      </div>
-      <div class="NewPostBox">
-        <button v-on:click="buttonNewPost">New Post</button>
-      </div>
-      <h1>This is an example menu</h1>
-      <h1>Option 1</h1>
-      <h1>Option 2</h1> 
+      </section>
+
+      <section class="ButtonLogInBox">
+        <button v-on:click="buttonLogIn"><h4>Login</h4></button>
+      </section>
+
+      <section class="NewPostBox">
+        <button v-on:click="buttonNewPost"><img src="../public/plus1.png" class="icoButton"><h4>New Post</h4></button>
+      </section>
+
+      <section class="MyPostBox">
+        <button v-on:click="buttonMyPost"><img src="../public/quotes-right1.png" class="icoButtonQuotes"><h4>My Posts</h4></button>
+      </section>
+
     </nav>
+
+    <section class="main-component">
+      
+    </section>
+
   </div>
 </template>
 <script>
@@ -34,8 +44,15 @@ export default {
 }
 </script>
 <style>
+h4 {
+  display: inline-block;
+}
 button {
-  padding: 15px 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0px 10px;
+  height: 50px;
   font-weight: bold;
   font-size: 16px;
   color:#8bd5cb;
@@ -47,6 +64,12 @@ button {
   display: flex;
   position: absolute;
   right: 100px;
+  width: fit-content;
+}
+.MyPostBox {
+  display: flex;
+  position: absolute;
+  right: 250px;
   width: fit-content;
 }
 .ButtonLogInBox {
@@ -64,6 +87,16 @@ button {
 }
 .LogoBox h1 {
   padding: 0px 10px;
+}
+.icoButtonQuotes {
+  padding: 0px 10px;
+  height: 15px;
+  width: 19px;
+}
+.icoButton {
+  padding: 0px 10px;
+  height: 19px;
+  width: 19px;
 }
 .logo {
   height: 45px;
