@@ -32,7 +32,8 @@
     <section class="main-component">
       <router-view
       v-on:completedLogIn="completedLogIn"
-      v-on:completedSignIn="completedSignIn">
+      v-on:completedSignIn="completedSignIn"
+      v-on:LoadMyPosts="buttonMyPost">
       </router-view>
     </section>
 
@@ -61,9 +62,9 @@ export default {
       this.buttonHome();
       window.location.reload()
     },
-    completedSignIn: function(data){
+    completedSignIn: function(){
       alert("Registration successful");
-      this.completedLogIn(data);
+      this.buttonLogOut();
     },
     buttonLogOut: function(){
       localStorage.clear();
@@ -76,7 +77,10 @@ export default {
     },
     buttonSignIn: function(){
       this.$router.push({name: "SignIn"});
-    }
+    },
+    buttonNewPost: function(){
+      this.$router.push({name: "CreatePost"})
+    },
   },
   created: function(){
     this.buttonHome();
@@ -101,6 +105,28 @@ button {
   border-width: 0px;
 }
 button:hover{
+  border-width: 3px;
+  border-style: solid;
+  border-color:#734444;
+  background-color: #eeedbe;
+  color: #734444;
+  transition:ease all 0.6s;
+}
+textarea {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 16px;
+  color:#eeedbe;
+  background-color: #734444;
+  border-radius: 5px;
+  border-width: 0px;
+}
+textarea:hover{
+  border-width: 3px;
+  border-style: solid;
+  border-color:#734444;
   background-color: #eeedbe;
   color: #734444;
   transition:ease all 0.6s;
@@ -119,6 +145,9 @@ input {
   border-width: 0px;
 }
 input:hover{
+  border-width: 3px;
+  border-style: solid;
+  border-color:#734444;
   background-color: #eeedbe;
   color: #734444;
   transition:ease all 0.6s;

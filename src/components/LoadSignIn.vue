@@ -37,7 +37,7 @@ export default {
                 password:"",
                 name:"",
                 email:"",
-                age:0,
+                age:"",
                 type:"Member"
             }
         }
@@ -52,12 +52,8 @@ export default {
                     "http://localhost:8000/api/auth/register",
                     this.user,
                     {headers: {}})
-                    .then((result) => {
-                        let dataSignUp = {
-                            username: this.user.username,
-                            token_access: result.data.token_access,
-                        }
-                        this.$emit('completedSignIn', dataSignUp)
+                    .then(() => {
+                        this.$emit('completedSignIn')
                     })
                     .catch((error) => {
                         console.log(error)

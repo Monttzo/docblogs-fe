@@ -4,6 +4,7 @@ import LoadPosts from '../components/LoadPosts.vue'
 import LogIn from '../components/LogIn.vue'
 import MyPosts from '../components/LoadMyPosts.vue'
 import SignIn from '../components/LoadSignIn.vue'
+import CreatePost from '../components/CreatePost.vue'
 
 const routes = [{
   path: '/',
@@ -29,6 +30,11 @@ const routes = [{
   path: '/SignIn',
   name: 'SignIn',
   component: SignIn
+},
+{
+  path: '/CreatePost',
+  name: 'CreatePost',
+  component: CreatePost
 },
 ]
 const router = createRouter({
