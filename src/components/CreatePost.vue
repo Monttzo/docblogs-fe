@@ -41,10 +41,6 @@ export default {
             let token = localStorage.getItem("token_access");
             let userId = jwt_decode(token).sub.toString();
             this.post.user_id = userId;
-            console.log(this.post.title);
-            console.log(this.post.description);
-            console.log(this.post.user_id);
-            console.log(this.post.user_name);
             axios.post(
                     "http://localhost:8000/api/auth/posts/create", this.post)
                     .then(() => {

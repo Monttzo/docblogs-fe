@@ -50,7 +50,6 @@ export default {
             this.Style.display = 'flex';
             this.StyleSearch.display = 'none';
             axios.get("http://localhost:8000/api/auth/posts/").then((result)=>{
-                console.log(result.data);
                 this.posts = result.data;
                 this.Style.display = 'none';
                 this.StyleSearch.display = 'inline-flex';
@@ -60,7 +59,6 @@ export default {
             this.Style.display = 'flex';
             this.StyleSearch.display = 'none';
             axios.post("http://localhost:8000/api/auth/posts/search",this.search).then((result)=>{
-                console.log(result.data);
                 this.posts = result.data;
                 this.Style.display = 'none';
                 this.StyleSearch.display = 'inline-flex';

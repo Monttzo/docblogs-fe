@@ -38,7 +38,6 @@ export default {
         LoadMyPosts: function(){
             let token = localStorage.getItem("token_access");
             let userId = jwt_decode(token).sub.toString();
-            console.log(userId);
             this.Style.display = 'flex';
             axios.post(
                 `http://127.0.0.1:8000/api/auth/posts/myposts/${userId}`)
