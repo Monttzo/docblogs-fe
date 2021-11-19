@@ -11,6 +11,10 @@
         <button v-on:click="buttonSignIn"><h4>Sign in</h4></button>
       </section>
 
+      <section v-if="isauth" class="Welcometitle">
+        <h1>Welcome {{username}}!</h1>
+      </section>
+
       <section class="ButtonLogInBox" v-if="!isauth">
         <button v-on:click="buttonLogIn"><h4>Login</h4></button>
       </section>
@@ -44,6 +48,7 @@ export default {
   name: 'App',
   data: function(){
     return {
+      username : localStorage.getItem("username"),
       isauth : localStorage.getItem("isAuth") || false,
     }
   },
@@ -63,7 +68,7 @@ export default {
       window.location.reload()
     },
     completedSignIn: function(){
-      alert("Registration successful");
+      alert("Registration successful, please LogIn");
       this.buttonLogOut();
     },
     buttonLogOut: function(){
@@ -88,6 +93,9 @@ export default {
 }
 </script>
 <style>
+.main-component {
+  padding: 100px 0px 0px 0px;
+}
 h4 {
   display: inline-block;
 }
@@ -173,7 +181,7 @@ input:hover{
 .ButtonLogInBox {
   display: flex;
   position: absolute;
-  right: 20px;
+  right: 25px;
   width: fit-content;
 }
 .ButtonLogOutBox {
@@ -183,6 +191,8 @@ input:hover{
   width: fit-content;
 }
 .LogoBox {
+  position: absolute;
+  left: 50px;
   cursor: pointer;
   display: flex;
   width: fit-content;
@@ -222,6 +232,10 @@ body {
   margin: 0px;
 }
 .nav {
+  height: 60px;
+  width: 100%;
+  position: fixed;
+  justify-content: center;
   display: flex;
   align-items: center;
   padding: 10px;

@@ -1,6 +1,6 @@
 <template>
 <center><img src="../../public/giphy.gif" v-bind:style="Style"></center>
-<section v-for="post in posts" :key="post.id" class="containerPost">
+<section v-for="post in posts.slice().reverse()" :key="post.id" class="containerPost">
     <section class="post">
         <section class="title">
             <h1>{{post.title}}</h1>
