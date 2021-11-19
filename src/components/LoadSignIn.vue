@@ -54,6 +54,7 @@ export default {
                     {headers: {}})
                     .then((result) => {
                         let dataSignUp = {
+                            username: this.user.username,
                             token_access: result.data.token_access,
                         }
                         this.$emit('completedSignIn', dataSignUp)

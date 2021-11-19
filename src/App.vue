@@ -54,6 +54,7 @@ export default {
       this.$router.push({name: "LogIn"});
     },
     completedLogIn: function(data){
+      localStorage.setItem("username", data.username);
       localStorage.setItem("isAuth", true);
       localStorage.setItem("token_access", data.token_access);
       alert("Succesfuly Autentication");

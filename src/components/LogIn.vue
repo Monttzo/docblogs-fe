@@ -8,7 +8,7 @@
 
         <section class="form">
             <form v-on:submit.prevent="processLogIn">
-                <input type="email" placeholder="email" v-model="user.email" required>
+                <input type="text" placeholder="username" v-model="user.username" required>
                 <br>
                 <input type="password" placeholder="password" v-model="user.password" required>
                 <center><button type="submit" class="submit"><h4>Login</h4></button></center>
@@ -26,7 +26,7 @@ export default {
     data: function(){
         return {
             user: {
-                email:"",
+                username:"",
                 password:""
             }
             
@@ -40,6 +40,7 @@ export default {
                 )
                 .then((result) => {
                     let dataLogIn = {
+                        username:this.user.username,
                         token_access: result.data.access_token,
                     }
                     this.$emit('completedLogIn', dataLogIn)
